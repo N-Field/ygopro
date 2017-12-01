@@ -214,6 +214,14 @@ void Game::MainLoop() {
 			LoadGui(params, true);
 			timer = device->getTimer();
 			timer->setTime(prevtime);
+			camera = smgr->addCameraSceneNode(0);
+			irr::core::matrix4 mProjection;
+			BuildProjectionMatrix(mProjection, -0.90f, 0.45f, -0.42f, 0.42f, 1.0f, 100.0f);
+			camera->setProjectionMatrix(mProjection);
+
+			mProjection.buildCameraLookAtMatrixLH(vector3df(4.2f, 8.0f, 7.8f), vector3df(4.2f, 0, 0), vector3df(0, 0, 1));
+			camera->setViewMatrixAffector(mProjection);
+			smgr->setAmbientLight(SColorf(1.0f, 1.0f, 1.0f));
 		}
 
 	}
