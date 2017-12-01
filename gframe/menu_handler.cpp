@@ -594,6 +594,12 @@ bool MenuHandler::OnEvent(const irr::SEvent& event) {
 				mainGame->device->minimizeWindow();
 			break;
 		}
+		case irr::KEY_F11: {
+			if (!event.KeyInput.PressedDown)
+				mainGame->fullscreentoggle=true;
+			return true;
+			break;
+		}
 		case irr::KEY_F12: {
 			if (!event.KeyInput.PressedDown)
 				utils.takeScreenshot(mainGame->device);
