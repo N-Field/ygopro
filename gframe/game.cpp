@@ -17,6 +17,8 @@
 #include <dirent.h>
 #endif
 
+#include "../ikpmp3/ikpMP3.h"
+
 unsigned short PRO_VERSION = 0x1342;
 
 namespace ygo {
