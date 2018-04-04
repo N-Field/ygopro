@@ -6,7 +6,8 @@ project "ygopro"
     files { "**.cpp", "**.cc", "**.c", "**.h" }
     excludes "lzma/**"
     includedirs { "../ocgcore" }
-    links { "ocgcore", "clzma", "Irrlicht", "freetype", "sqlite3" , "event", "irrKlang"}
+    links { "ocgcore", "clzma", "Irrlicht", "freetype", "sqlite3" , "event", "irrKlang", "ikpmp3" }
+    defines { "IRRKLANG_STATIC" }
 
     configuration "windows"
         files "ygopro.rc"

@@ -62,5 +62,5 @@ solution "ygo"
     include "irrlicht"
     include "lua"
     include "sqlite3"
-	include "ikpmp3"
+    include "ikpmp3"
     end
