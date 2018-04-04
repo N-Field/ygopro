@@ -701,6 +701,7 @@ bool Game::Initialize() {
 	
 	engineSound = irrklang::createIrrKlangDevice();
 	engineMusic = irrklang::createIrrKlangDevice();
+	irrklang::ikpMP3Init(engineMusic);
 	hideChat = false;
 	hideChatTimer = 0;
 
