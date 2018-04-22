@@ -17,6 +17,8 @@
 #include <dirent.h>
 #endif
 
+#include "../ikpmp3/ikpMP3.h"
+
 unsigned short PRO_VERSION = 0x1342;
 
 namespace ygo {
@@ -90,7 +92,7 @@ bool Game::Initialize() {
 	guiFont = irr::gui::CGUITTFont::createTTFont(env, gameConf.textfont, gameConf.textfontsize);
 	textFont = guiFont;
 	smgr = device->getSceneManager();
-	device->setWindowCaption(L"EDOPro");
+	device->setWindowCaption(L"MomobakoPro");
 	device->setResizable(true);
 #ifdef _WIN32
 	HINSTANCE hInstance = (HINSTANCE)GetModuleHandle(NULL);
@@ -107,7 +109,7 @@ bool Game::Initialize() {
 #endif
 	//main menu
 	wchar_t strbuf[256];
-	myswprintf(strbuf, L"EDOPro Version:%X.0%X.%X", PRO_VERSION >> 12, (PRO_VERSION >> 4) & 0xff, PRO_VERSION & 0xf);
+	myswprintf(strbuf, L"MomobakoPro Version:%X.0%X.%X", PRO_VERSION >> 12, (PRO_VERSION >> 4) & 0xff, PRO_VERSION & 0xf);
 	wMainMenu = env->addWindow(rect<s32>(370, 200, 650, 415), false, strbuf);
 	wMainMenu->getCloseButton()->setVisible(false);
 	btnLanMode = env->addButton(rect<s32>(10, 30, 270, 60), wMainMenu, BUTTON_LAN_MODE, dataManager.GetSysString(1200));
@@ -700,6 +702,7 @@ bool Game::Initialize() {
 	
 	engineSound = irrklang::createIrrKlangDevice();
 	engineMusic = irrklang::createIrrKlangDevice();
+	irrklang::ikpMP3Init(engineMusic);
 	hideChat = false;
 	hideChatTimer = 0;
 
@@ -792,7 +795,7 @@ void Game::MainLoop() {
 			usleep(20000);
 #endif
 		if(cur_time >= 1000) {
-			myswprintf(cap, L"EDOPro FPS: %d", fps);
+			myswprintf(cap, L"MomobakoPro FPS: %d", fps);
 			device->setWindowCaption(cap);
 			fps = 0;
 			cur_time -= 1000;

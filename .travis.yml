@@ -1,0 +1,26 @@
+language: cpp
+dist: trusty
+git:
+  submodules: false
+addons:
+  ssh_known_hosts:
+  - github.com
+  apt:
+    packages:
+    - libevent-dev
+    - libsqlite3-dev
+before_install:
+- git submodule update --init --recursive
+
+- wget 'http://www.lua.org/ftp/lua-5.3.4.tar.gz'
+- tar zxf lua-5.3.4.tar.gz
+- cd lua-5.3.4
+- make linux test
+- sudo make install
+- cd ..
+
+- wget -O - https://github.com/premake/premake-core/releases/download/v5.0.0-alpha12/premake-5.0.0-alpha12-linux.tar.gz | tar zfx -
+script:
+- ./premake5 gmake
+- cd build
+- make config=release
